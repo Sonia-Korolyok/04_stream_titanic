@@ -1,0 +1,13 @@
+{
+  "name": "04_hw_titanic_stream",
+  "version": "0.0.1",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "sonia",
+  "license": "ISC",
+  "description": "stream in use"
+}
