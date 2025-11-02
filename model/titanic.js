@@ -16,7 +16,8 @@ export class Titanic {
                 res += +cells[9];
             }
         })
-        console.log(`Total fares:`, res.toFixed(2));
+        return res;
+
      }
 
     async avgFaresByClasses() {
@@ -34,26 +35,9 @@ export class Titanic {
         for (const key in res) {
             res[key] = +(res[key].reduce((a, b) => a + b)/res[key].length).toFixed(2);
         }
-        console.log(`Average fares by classes:`, res);
-    }
+        return res;
 
-    // async avgFaresByClasses() {
-    //     let res = {};
-    //     await this._processLines(cells => {
-    //         if (cells[9]) {
-    //             const info = {pClass: cells[2], fare: +cells[9]}
-    //             const key = info.pClass;
-    //             if (!res[key]) {
-    //                 res[key] = [];
-    //             }
-    //             res[key].push(info.fare);
-    //         }
-    //         for (const key in res) {
-    //             res[key] = +(res[key].reduce((a, b) => a + b) / res[key].length).toFixed(2);
-    //             console.log(`Average fares by classes:`, res);
-    //         }
-    //     })
-    // }
+    }
 
    async totalSurvived() {
        let res = {};
@@ -64,7 +48,8 @@ export class Titanic {
            }
            res[key]++;
        })
-       console.log(res);
+       return res;
+
    }
 
    async totalSurvivedByGender() {
@@ -76,7 +61,8 @@ export class Titanic {
             }
             res[key]++;
         })
-       console.log(res);
+       return res;
+
     }
 
    async totalSurvivedChildren() {
@@ -90,16 +76,21 @@ export class Titanic {
                 res[key]++;
             }
         })
-       console.log(res);
+       return res;
    }
 
 
    async showStats() {
-       await this.totalFares();
-        await this.avgFaresByClasses();
-        await this.totalSurvived();
-        await this.totalSurvivedByGender();
-        await this.totalSurvivedChildren();
+       let res = await this.totalFares();
+       console.log(`Total fares:`, res.toFixed(2));
+        res = await this.avgFaresByClasses();
+       console.log(`Average fares by classes:`, res);
+        res = await this.totalSurvived();
+       console.log(res);
+        res = await this.totalSurvivedByGender();
+       console.log(res);
+        res = await this.totalSurvivedChildren();
+       console.log(res);
     }
 
     _survivedGender(gender, survived) {
